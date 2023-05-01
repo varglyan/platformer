@@ -8,7 +8,7 @@ workflows:
     jobs:
       - unity/build:
           name: 'build-Windows64-il2cpp'
-          step-name: 'Build project for Windows using Cloud'
+          step-name: 'Build project for Windows using Cloud1'
           unity-license-var-name: 'UNITY_ENCODED_LICENSE'
           unity-username-var-name: 'UNITY_USERNAME'
           unity-password-var-name: 'UNITY_PASSWORD'
