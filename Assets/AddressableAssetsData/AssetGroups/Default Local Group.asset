@@ -16,7 +16,15 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: cd4191a154402c246b55ef82874bf0f5
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 7d60c822c3f1b408ea7a00ecdb5e047a
+    m_Address: Assets/Prefabs/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f158aa2be3df6489185ef721f6fd79c1
+    m_Address: Assets/Prefabs/Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 41b8c22bf0001a44faab871f564cb47d, type: 2}
   m_SchemaSet:
