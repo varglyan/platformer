@@ -1,6 +1,7 @@
 name: Build project
 
-on: [push]
+on:
+   workflow_dispatch:
 permissions:
   contents: write
 
@@ -12,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - WebGL # WebGL.
+#          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+#          - WebGL # WebGL.
           - Android # Build an Android .apk standalone app.
     steps:
       - uses: actions/checkout@v2
@@ -34,21 +35,21 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-  deployPages:
-    needs: buildForAllSupportedPlatforms
-    name: Deploy to Github Pages 🚀
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # deployPages:
+  #   needs: buildForAllSupportedPlatforms
+  #   name: Deploy to Github Pages 🚀
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: Build-WebGL 
-          path: build/WebGL 
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: Build-WebGL 
+  #         path: build/WebGL 
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: build/WebGL
+  #     - name: Deploy 🚀
+  #       uses: JamesIves/github-pages-deploy-action@4.1.4
+  #       with:
+  #         branch: gh-pages
+  #         folder: build/WebGL
