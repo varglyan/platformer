@@ -12,32 +12,46 @@ workflows:
 
   build-unity-project:
     jobs:
+      # - unity/build:
+      #     name: 'build-linux64-mono'
+      #     step-name: 'Build StandaloneLinux64'
+      #     unity-license-var-name: 'UNITY_ENCODED_LICENSE'
+      #     unity-username-var-name: 'UNITY_USERNAME'
+      #     unity-password-var-name: 'UNITY_PASSWORD'
+      #     executor:
+      #       name: 'unity/ubuntu'
+      #       target_platform: 'base'
+      #       editor_version: '2021.3.2f1'
+      #       resource_class: 'large'
+      #     build-target: StandaloneLinux64
+      #     compress: true
+      #     context:
+      #       - unity
+      # - unity/build:
+      #     name: 'build-Windows64-mono'
+      #     step-name: 'Build StandaloneWindows64'
+      #     unity-license-var-name: 'UNITY_ENCODED_LICENSE'
+      #     unity-username-var-name: 'UNITY_USERNAME'
+      #     unity-password-var-name: 'UNITY_PASSWORD'
+      #     executor:
+      #       name: 'unity/ubuntu'
+      #       target_platform: 'windows-mono'
+      #       editor_version: '2021.3.2f1'
+      #       resource_class: 'large'
+      #     build-target: 'StandaloneWindows64'
+      #     context:
+      #       - unity
       - unity/build:
-          name: 'build-linux64-mono'
-          step-name: 'Build StandaloneLinux64'
-          unity-license-var-name: 'UNITY_ENCODED_LICENSE'
-          unity-username-var-name: 'UNITY_USERNAME'
-          unity-password-var-name: 'UNITY_PASSWORD'
-          executor:
-            name: 'unity/ubuntu'
-            target_platform: 'base'
-            editor_version: '2021.3.2f1'
-            resource_class: 'large'
-          build-target: StandaloneLinux64
-          compress: true
-          context:
-            - unity
-      - unity/build:
-          name: 'build-Windows64-mono'
+          name: 'build-Android'
           step-name: 'Build StandaloneWindows64'
           unity-license-var-name: 'UNITY_ENCODED_LICENSE'
           unity-username-var-name: 'UNITY_USERNAME'
           unity-password-var-name: 'UNITY_PASSWORD'
           executor:
             name: 'unity/ubuntu'
-            target_platform: 'windows-mono'
+            target_platform: 'Android'
             editor_version: '2021.3.2f1'
             resource_class: 'large'
-          build-target: 'StandaloneWindows64'
+          build-target: 'Android'
           context:
             - unity
