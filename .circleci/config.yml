@@ -1,21 +1,43 @@
-version: '2.1'
+version: 2.1
+
 orbs:
   unity: game-ci/unity@1.4.0
+
 workflows:
-  test-build-with-executors:
-    jobs:      
+
+  # create-unity-activation-file:
+  #   jobs:
+  #     - unity/create-activation-file:
+  #         editor_version: 2021.3.9f1
+
+  build-unity-project:
+    jobs:
       - unity/build:
-          build-target: StandaloneWindows64
-          compress: true
-          context: unity
+          name: 'build-linux64-mono'
+          step-name: 'Build StandaloneLinux64'
+          unity-license-var-name: 'UNITY_ENCODED_LICENSE'
+          unity-username-var-name: 'UNITY_USERNAME'
+          unity-password-var-name: 'UNITY_PASSWORD'
           executor:
-            editor_version: 2021.3.2f1
-            name: unity/windows-2019
-            size: large
-            target_platform: windows-il2cpp
-          name: build-Windows64-il2cpp
-          project-path: Unity2D-Demo-Game-CI-CD/src
-          step-name: Build StandaloneWindows64 il2cpp
-          unity-license-var-name: UNITY_ENCODED_LICENSE
-          unity-password-var-name: UNITY_PASSWORD
-          unity-username-var-name: UNITY_USERNAME
+            name: 'unity/ubuntu'
+            target_platform: 'base'
+            editor_version: '2021.3.2f1'
+            resource_class: 'large'
+          build-target: StandaloneLinux64
+          compress: true
+          context:
+            - unity
+      - unity/build:
+          name: 'build-Windows64-mono'
+          step-name: 'Build StandaloneWindows64'
+          unity-license-var-name: 'UNITY_ENCODED_LICENSE'
+          unity-username-var-name: 'UNITY_USERNAME'
+          unity-password-var-name: 'UNITY_PASSWORD'
+          executor:
+            name: 'unity/ubuntu'
+            target_platform: 'windows-mono'
+            editor_version: '2021.3.2f1'
+            resource_class: 'large'
+          build-target: 'StandaloneWindows64'
+          context:
+            - unity
